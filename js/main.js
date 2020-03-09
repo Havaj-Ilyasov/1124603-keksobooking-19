@@ -1,6 +1,6 @@
 'use strict';
 
-var data = [
+var popupData = [
   {
     'author': {
       'avatar': 'img/avatars/user01.png'
@@ -348,15 +348,15 @@ var renderPopup = function (data, index) {
   popupElement.querySelector('.popup__description').textContent = data[index].offer.description;
   popupElement.querySelector('.popup__photo').src = data[index].offer.photos[0];
   return popupElement;
-}
+};
 
 var insertPopup = function () {
   var pinsFragment = document.createDocumentFragment();
   var popupsFragment = document.createDocumentFragment();
-  for (var i= 0; i < data.length; i++) {
-    pinsFragment.appendChild(renderPin(data, i));
-    popupsFragment.appendChild(renderPopup(data, i));
-  };
+  for (var i = 0; i < popupData.length; i++) {
+    pinsFragment.appendChild(renderPin(popupData, i));
+    popupsFragment.appendChild(renderPopup(popupData, i));
+  }
   mapPins.appendChild(pinsFragment);
   mapPins.appendChild(popupsFragment);
 };
