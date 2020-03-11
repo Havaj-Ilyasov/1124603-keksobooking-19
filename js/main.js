@@ -368,7 +368,7 @@ var insertPopup = function () {
   for (var i = 0; i < generateDataArray(popupData).length; i++) {
     pinsFragment.appendChild(renderPin(generateDataArray(popupData), i));
     popupsFragment.appendChild(renderPopup(generateDataArray(popupData), i));
-  }
+  };
   mapPins.appendChild(pinsFragment);
   mapPins.appendChild(popupsFragment);
 };
