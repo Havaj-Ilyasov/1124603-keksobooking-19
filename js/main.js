@@ -324,11 +324,21 @@ var popupData = [
   }
 ];
 
+// Функция создания массива из объектов
+var generateDataArray = function (obj) {
+  var arrayData = [];
+  for (var key in obj) {
+    arrayData.push(obj[key]);
+  }
+  return arrayData;
+};
+
 var mapPins = document.querySelector('.map__pins');
 var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 
 var cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 
+// Функция создания метки
 var renderPin = function (data, index) {
   var pin = pinTemplate.cloneNode(true);
   pin.querySelector('img').src = data[index].author.avatar;
@@ -338,6 +348,7 @@ var renderPin = function (data, index) {
   return pin;
 };
 
+// Функция создания карточки объявления
 var renderPopup = function (data, index) {
   var popupElement = cardTemplate.cloneNode(true);
   popupElement.querySelector('.popup__avatar').src = data[index].author.avatar;
@@ -350,12 +361,13 @@ var renderPopup = function (data, index) {
   return popupElement;
 };
 
+// Функция вставки метки и карточки в DOM
 var insertPopup = function () {
   var pinsFragment = document.createDocumentFragment();
   var popupsFragment = document.createDocumentFragment();
-  for (var i = 0; i < popupData.length; i++) {
-    pinsFragment.appendChild(renderPin(popupData, i));
-    popupsFragment.appendChild(renderPopup(popupData, i));
+  for (var i = 0; i < generateDataArray(popupData).length; i++) {
+    pinsFragment.appendChild(renderPin(generateDataArray(popupData), i));
+    popupsFragment.appendChild(renderPopup(generateDataArray(popupData), i));
   }
   mapPins.appendChild(pinsFragment);
   mapPins.appendChild(popupsFragment);
